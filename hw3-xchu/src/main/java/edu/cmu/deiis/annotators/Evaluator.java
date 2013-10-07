@@ -89,6 +89,7 @@ public class Evaluator extends JCasAnnotator_ImplBase {
      }
     double precision = (double)predictnum / truenum;
     System.out.println("Precision at "+truenum+": "+precision);
+    System.out.println("\n");
     
     }
   

@@ -5,36 +5,33 @@
   <primitive>false</primitive>  
   <delegateAnalysisEngineSpecifiers>
     <delegateAnalysisEngine key="TestElementAnnotatorDescriptor">
-      <import location="TestElementAnnotatorDescriptor.xml"/>
+      <import location="/home/cxw/git/hw3-xchu/hw3-xchu/src/main/resources/descriptors/TestElementAnnotatorDescriptor.xml"/>
     </delegateAnalysisEngine>
     <delegateAnalysisEngine key="TokenAnnotatorDescriptor">
-      <import location="TokenAnnotatorDescriptor.xml"/>
+      <import location="/home/cxw/git/hw3-xchu/hw3-xchu/src/main/resources/descriptors/TokenAnnotatorDescriptor.xml"/>
     </delegateAnalysisEngine>
     <delegateAnalysisEngine key="TokenUniGramAnnotatorDescriptor">
-      <import location="TokenUniGramAnnotatorDescriptor.xml"/>
+      <import location="/home/cxw/git/hw3-xchu/hw3-xchu/src/main/resources/descriptors/TokenUniGramAnnotatorDescriptor.xml"/>
     </delegateAnalysisEngine>
     <delegateAnalysisEngine key="TokenBiGramAnnotatorDescriptor">
-      <import location="TokenBiGramAnnotatorDescriptor.xml"/>
+      <import location="/home/cxw/git/hw3-xchu/hw3-xchu/src/main/resources/descriptors/TokenBiGramAnnotatorDescriptor.xml"/>
     </delegateAnalysisEngine>
     <delegateAnalysisEngine key="TokenTriGramAnnotatorDescriptor">
-      <import location="TokenTriGramAnnotatorDescriptor.xml"/>
+      <import location="/home/cxw/git/hw3-xchu/hw3-xchu/src/main/resources/descriptors/TokenTriGramAnnotatorDescriptor.xml"/>
     </delegateAnalysisEngine>
-  <delegateAnalysisEngine key="EvaluatorDescriptor">
+    <delegateAnalysisEngine key="EvaluatorDescriptor">
       <import location="/home/cxw/git/hw3-xchu/hw3-xchu/src/main/resources/descriptors/EvaluatorDescriptor.xml"/>
     </delegateAnalysisEngine>
-  <delegateAnalysisEngine key="NameEntityMentionScoreDescriptor">
-      <import location="/home/cxw/git/hw3-xchu/hw3-xchu/src/main/resources/descriptors/NameEntityMentionScoreDescriptor.xml"/>
-    </delegateAnalysisEngine>
-  <delegateAnalysisEngine key="StanfordCoreNLPDescriptor">
-      <import location="/home/cxw/git/hw3-xchu/hw3-xchu/src/main/resources/descriptors/StanfordCoreNLPDescriptor.xml"/>
+    <delegateAnalysisEngine key="NGramOverlapScoreAnnotatorDescriptor">
+      <import location="/home/cxw/git/hw3-xchu/hw3-xchu/src/main/resources/descriptors/NGramOverlapScoreAnnotatorDescriptor.xml"/>
     </delegateAnalysisEngine>
   </delegateAnalysisEngineSpecifiers>
   <analysisEngineMetaData>
-    <name>AggregrateDescriptor</name>
+    <name>hw2-xchu-aae</name>
     <description/>
     <version>1.0</version>
     <vendor/>
-    <configurationParameters searchStrategy="language_fallback"/>
+    <configurationParameters/>
     <configurationParameterSettings/>
     <flowConstraints>
       <fixedFlow>
@@ -43,9 +40,8 @@
         <node>TokenUniGramAnnotatorDescriptor</node>
         <node>TokenBiGramAnnotatorDescriptor</node>
         <node>TokenTriGramAnnotatorDescriptor</node>
-      <node>StanfordCoreNLPDescriptor</node>
-      <node>NameEntityMentionScoreDescriptor</node>
-      <node>EvaluatorDescriptor</node>
+        <node>NGramOverlapScoreAnnotatorDescriptor</node>
+        <node>EvaluatorDescriptor</node>
       </fixedFlow>
     </flowConstraints>
     <typePriorities/>
@@ -59,8 +55,6 @@
           <type allAnnotatorFeatures="true">edu.cmu.deiis.types.Token</type>
           <type allAnnotatorFeatures="true">edu.cmu.deiis.types.NGram</type>
           <type allAnnotatorFeatures="true">edu.cmu.deiis.types.AnswerScore</type>
-        <type allAnnotatorFeatures="true">org.cleartk.ne.type.NamedEntityMention</type>
-          <type allAnnotatorFeatures="true">org.cleartk.ne.type.NamedEntity</type>
         </outputs>
         <languagesSupported/>
       </capability>

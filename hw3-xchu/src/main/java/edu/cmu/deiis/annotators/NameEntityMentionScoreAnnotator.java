@@ -23,7 +23,7 @@ import edu.cmu.deiis.types.Question;
  * @author cxw
  *
  */
-public class NGramOverlapScoreAnnotator extends JCasAnnotator_ImplBase {
+public class NameEntityMentionScoreAnnotator extends JCasAnnotator_ImplBase {
   
   //These parameters must be set in the analysis engine descriptor
   private static String COMPONENT_NAME = "componetId";
@@ -59,11 +59,11 @@ public class NGramOverlapScoreAnnotator extends JCasAnnotator_ImplBase {
     /* get question answer and token index */
     FSIndex qIndex = aJCas.getAnnotationIndex(Question.type);
     FSIndex aIndex = aJCas.getAnnotationIndex(Answer.type);
-    FSIndex index = aJCas.getAnnotationIndex(NGram.type);
+    FSIndex index = aJCas.getAnnotationIndex(NamedEntityMention.type);
     
     FSIterator<Question> qIterator = qIndex.iterator();
     FSIterator<Answer> aIterator = aIndex.iterator();
-    FSIterator<NGram> nIterator = index.iterator();
+    FSIterator<NamedEntityMention> nIterator = index.iterator();
     
     /* get features from question */
     Question q = qIterator.next();
@@ -74,7 +74,7 @@ public class NGramOverlapScoreAnnotator extends JCasAnnotator_ImplBase {
     while(nIterator.hasNext())
     {
       /* get ngrams for each question */
-      NGram ngram = nIterator.next();
+      NamedEntityMention ngram = nIterator.next();
       if (ngram.getBegin() >= begin && ngram.getEnd() <= end)
       {
         qArray.add(ngram.getCoveredText());
@@ -95,10 +95,11 @@ public class NGramOverlapScoreAnnotator extends JCasAnnotator_ImplBase {
       
       while(nIterator.hasNext())
       {
-        NGram ngram = nIterator.next();
+        NamedEntityMention ngram = nIterator.next();
         if (ngram.getBegin() >= begin && ngram.getEnd() <= end)
         {
           String tokenString = ngram.getCoveredText();
+          System.out.println(tokenString);
           if (qArray.contains(tokenString)) {
             matchnum++;
           }

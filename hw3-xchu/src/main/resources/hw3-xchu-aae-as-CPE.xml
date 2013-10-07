@@ -16,9 +16,9 @@
         </collectionIterator>
     </collectionReader>
     <casProcessors casPoolSize="3" processingUnitThreadCount="1">
-        <casProcessor deployment="integrated" name="AggregrateDescriptor">
+        <casProcessor deployment="integrated" name="hw2-xchu-aae-client.xml">
             <descriptor>
-                <import location="descriptors/AggregrateDescriptor.xml"/>
+                <import location="hw2-xchu-aae-client.xml"/>
             </descriptor>
             <deploymentParameters/>
             <errorHandling>
