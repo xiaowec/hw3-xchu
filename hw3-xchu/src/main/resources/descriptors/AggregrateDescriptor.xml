@@ -43,8 +43,8 @@
         <node>TokenUniGramAnnotatorDescriptor</node>
         <node>TokenBiGramAnnotatorDescriptor</node>
         <node>TokenTriGramAnnotatorDescriptor</node>
-      <node>StanfordCoreNLPDescriptor</node>
       <node>NameEntityMentionScoreDescriptor</node>
+      <node>StanfordCoreNLPDescriptor</node>
       <node>EvaluatorDescriptor</node>
       </fixedFlow>
     </flowConstraints>

@@ -10,7 +10,7 @@ import org.apache.uima.jcas.cas.TOP_Type;
 
 
 /** 
- * Updated by JCasGen Mon Oct 07 00:28:51 EDT 2013
+ * Updated by JCasGen Mon Oct 07 13:11:20 EDT 2013
  * XML source: /home/cxw/git/hw3-xchu/hw3-xchu/src/main/resources/descriptors/AggregrateDescriptor.xml
  * @generated */
 public class Token extends Annotation {

@@ -24,13 +24,19 @@
         </value>
       </nameValuePair>
     </configurationParameterSettings>
-    <typeSystemDescription/>
+    <typeSystemDescription>
+      <imports>
+        <import location="/home/cxw/git/hw3-xchu/hw3-xchu/src/main/resources/descriptors/CleartkTypeSystem.xml"/>
+      </imports>
+    </typeSystemDescription>
     <typePriorities/>
     <fsIndexCollection/>
     <capabilities>
       <capability>
         <inputs/>
-        <outputs/>
+        <outputs>
+          <type allAnnotatorFeatures="true">org.cleartk.ne.type.NamedEntityMention</type>
+        </outputs>
         <languagesSupported/>
       </capability>
     </capabilities>

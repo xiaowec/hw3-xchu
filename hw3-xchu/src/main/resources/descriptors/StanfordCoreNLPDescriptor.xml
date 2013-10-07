@@ -12,7 +12,7 @@
     <configurationParameterSettings/>
     <typeSystemDescription>
       <imports>
-        <import name="org.cleartk.TypeSystem"/>
+        <import location="/home/cxw/git/hw3-xchu/hw3-xchu/src/main/resources/descriptors/CleartkTypeSystem.xml"/>
       </imports>
     </typeSystemDescription>
     <typePriorities/>
@@ -22,8 +22,7 @@
         <inputs/>
         <outputs>
           <type allAnnotatorFeatures="true">org.cleartk.ne.type.NamedEntityMention</type>
-          <type allAnnotatorFeatures="true">org.cleartk.ne.type.NamedEntity</type>
-        </outputs>
+          </outputs>
         <languagesSupported/>
       </capability>
     </capabilities>
