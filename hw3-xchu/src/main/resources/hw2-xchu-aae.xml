@@ -19,11 +19,11 @@
     <delegateAnalysisEngine key="TokenTriGramAnnotatorDescriptor">
       <import location="/home/cxw/git/hw3-xchu/hw3-xchu/src/main/resources/descriptors/TokenTriGramAnnotatorDescriptor.xml"/>
     </delegateAnalysisEngine>
-    <delegateAnalysisEngine key="EvaluatorDescriptor">
-      <import location="/home/cxw/git/hw3-xchu/hw3-xchu/src/main/resources/descriptors/EvaluatorDescriptor.xml"/>
-    </delegateAnalysisEngine>
     <delegateAnalysisEngine key="NGramOverlapScoreAnnotatorDescriptor">
       <import location="/home/cxw/git/hw3-xchu/hw3-xchu/src/main/resources/descriptors/NGramOverlapScoreAnnotatorDescriptor.xml"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="EvaluatorDescriptor">
+      <import location="/home/cxw/git/hw3-xchu/hw3-xchu/src/main/resources/descriptors/EvaluatorDescriptor.xml"/>
     </delegateAnalysisEngine>
   </delegateAnalysisEngineSpecifiers>
   <analysisEngineMetaData>

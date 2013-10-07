@@ -4,8 +4,8 @@
   org.apache.uima.aae.jms_adapter.JmsAnalysisEngineServiceAdapter
   </resourceClassName>
   <parameters>
-    <parameter name="brokerURL" value="tcp://mu.lti.cs.cmu.edu:61616"/>
-    <parameter name="endpoint"  value="ScnlpQueue"/>
+    <parameter name="brokerURL" value="tcp://cxw-Lenovo-G450:61616"/>
+    <parameter name="endpoint"  value="hw2Queue"/>
       <parameter name="timeout" value="50000"/>
       <parameter name="cpctimeout" value="50000"/>
       <parameter name="binary_serialization" value="false"/>

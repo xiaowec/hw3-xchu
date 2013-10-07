@@ -24,9 +24,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
 
 import org.apache.uima.cas.CAS;
 import org.apache.uima.cas.CASException;
+import org.apache.uima.cas.FSIndex;
 import org.apache.uima.cas.FSIterator;
 import org.apache.uima.cas.impl.XmiCasSerializer;
 import org.apache.uima.collection.CasConsumer_ImplBase;
@@ -36,6 +41,10 @@ import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.resource.ResourceProcessException;
 import org.apache.uima.util.XMLSerializer;
 import org.xml.sax.SAXException;
+
+import edu.cmu.deiis.types.Answer;
+import edu.cmu.deiis.types.AnswerScore;
+import edu.cmu.deiis.types.Question;
 
 /**
  * A simple CAS consumer that writes the CAS to XMI format.
@@ -55,6 +64,11 @@ public class XmiWriterCasConsumer extends CasConsumer_ImplBase {
   private File mOutputDir;
 
   private int mDocNum;
+  
+  private int predictnum; //number of correct prediction for a single document
+  private int truenum; //number of top n sentences for a single document
+  private int correctnum; //number of correctly predicted answers
+  private int totalnum; //total number of top n sentences in training dataset
 
   public void initialize() throws ResourceInitializationException {
     mDocNum = 0;
@@ -85,6 +99,60 @@ public class XmiWriterCasConsumer extends CasConsumer_ImplBase {
     } catch (CASException e) {
       throw new ResourceProcessException(e);
     }
+    
+    
+    FSIndex qIndex = jcas.getAnnotationIndex(Question.type);
+    FSIndex aIndex = jcas.getAnnotationIndex(AnswerScore.type);
+    
+    /* Print question */
+    Iterator<Question> qIterator = qIndex.iterator();
+    if (qIterator.hasNext()) {
+      String qString = qIterator.next().getCoveredText();
+      System.out.println("Question: "+qString);
+    }
+    
+    Iterator<AnswerScore> aIterator = aIndex.iterator();
+    ArrayList<AnswerScore> scoreList = new ArrayList<AnswerScore>();
+    
+    predictnum = 0;
+    truenum = 0;
+    
+    /*get the number of correct sentences in documents */
+    while(aIterator.hasNext())
+    {
+      AnswerScore score = aIterator.next();
+      if(score.getAnswer().getIsCorrect())
+      {
+        truenum++;
+        totalnum++;
+      }
+      scoreList.add(score);
+    }
+    Collections.sort(scoreList, comparator);
+    
+    /* get the number of correctly predicted answers */
+    for (int i=0 ; i< scoreList.size(); i++)
+    {
+      AnswerScore aScore = scoreList.get(i);
+      Answer a = aScore.getAnswer();
+      char sign;
+      if(a.getIsCorrect())
+      {
+        if (i < truenum) {
+          predictnum++;
+          correctnum++;
+        }
+        sign = '+';
+      }
+      else {
+        sign = '-';
+      }
+      System.out.println(sign+" "+aScore.getScore()+" "+aScore.getAnswer().getCoveredText());
+     }
+    double precision = (double)predictnum / truenum;
+    System.out.println("Precision at "+truenum+": "+precision);
+    System.out.println("\n");
+    
 
     // retreive the filename of the input file from the CAS
     FSIterator it = jcas.getAnnotationIndex(SourceDocumentInformation.type).iterator();
@@ -145,4 +213,18 @@ public class XmiWriterCasConsumer extends CasConsumer_ImplBase {
       }
     }
   }
+  
+public static Comparator<AnswerScore> comparator = new Comparator<AnswerScore>() {
+    
+    public int compare(AnswerScore a, AnswerScore b)
+    {
+      if (a.getScore() < b.getScore()) {
+        return 1;
+      }
+      if (a.getScore() > b.getScore()) {
+        return -1;
+      }
+      return 0;
+    }
+  };
 }
